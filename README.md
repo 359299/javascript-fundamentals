@@ -27,7 +27,7 @@ Comprender los fundamentos de JavaScript y aplicar los conceptos básicos de pro
 - JavaScript (ES6+)
 - Node.js
 - Git y GitHub
-- Visual Studio Code / WebStorm (editor de código)
+- WebStorm / IntelliJ IDEA (JetBrains) como editor de código
 
 ## Requisitos previos
 
@@ -46,13 +46,13 @@ git --version
 El proyecto no tiene dependencias externas, por lo que basta con clonarlo:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/359299/javascript-fundamentals.git
 cd javascript-fundamentals
 ```
 
 ## Ejecución
 
-Cada archivo se ejecuta por separado desde la terminal:
+Cada archivo se ejecuta por separado desde la terminal, dentro de la carpeta del proyecto:
 
 ```bash
 node app.js
@@ -62,15 +62,68 @@ node poo.js
 
 La salida se muestra directamente en la consola.
 
+## Scripts / comandos disponibles
+
+El proyecto no define `package.json`; los ejemplos se ejecutan directamente con Node.js.
+
+| Comando | Descripción |
+|---|---|
+| `node app.js` | Ejecuta los ejemplos de fundamentos de JavaScript. |
+| `node cal.js` | Ejecuta la calculadora con funciones, callbacks, promesas y `async/await`. |
+| `node poo.js` | Ejecuta los ejemplos de clases, herencia y polimorfismo. |
+
 ## Funcionalidades / uso
 
-| Archivo | Subtema | Contenido |
-|---|---|---|
-| `app.js` | 2.2.1 Introducción a los lenguajes de scripting | Variables con `var`, `let` y `const`; tipos de datos y objetos; arreglos; funciones tradicionales, anónimas y flecha; funciones como argumentos de otras funciones; enumeraciones con objetos. |
-| `cal.js` | 2.2.2 Programación funcional aplicada a la web | Calculadora con multiplicación y división; composición de funciones; callbacks de éxito y error; promesas con `.then()` y `.catch()`; `async/await`. |
-| `poo.js` | 2.2.3 Programación orientada a objetos aplicada a la web | Clases y constructores; creación de objetos con `new`; getters y setters; herencia con `extends` y `super`; método estático e `instanceof`; polimorfismo con una jerarquía de animales (`Animal`, `Dog`, `Cat`). |
+### `app.js` — Fundamentos de JavaScript (2.2.1)
 
-Salida esperada de `poo.js` (resumen): imprime el nombre del animal, usa el setter para cambiarlo, comprueba con `instanceof` si un objeto es `Animal` y, al final, cada animal emite su propio sonido (polimorfismo).
+- Declaración de variables con `var`, `let` y `const`.
+- Tipos de datos y objetos (cadenas, números, booleanos, objetos anidados y funciones).
+- Arreglos de números, booleanos, caracteres y objetos.
+- Funciones tradicionales, anónimas y funciones flecha.
+- Funciones usadas como argumentos de otras funciones (`print(fx, a, b)`).
+- Enumeración simulada con un objeto (`seasons`).
+
+Salida esperada:
+
+```text
+11
+6
+20
+28
+25
+Summer
+```
+
+### `cal.js` — Programación funcional (2.2.2)
+
+- `multiply` y `divide` implementadas con sumas y restas sucesivas.
+- Composición de funciones para operaciones consecutivas, por ejemplo `((5 * 4) / 10) * 6 = 12`.
+- Callbacks de éxito y error (`multiplyCall`, `divideCall`), incluyendo validación de parámetros faltantes y división entre cero.
+- Promesas (`multiplyPromise`, `dividePromise`) encadenadas con `.then()` y `.catch()`.
+- Función `operations()` con `async/await`.
+
+Salida esperada (resumen): resultados de la composición directa (`20`, `4`, `2`, `12`), luego los resultados de los callbacks, y al final los de las promesas y de `async/await`, que se muestran como objetos `{ n1: ... }`. El orden de las últimas líneas puede variar porque son operaciones asíncronas.
+
+### `poo.js` — Programación orientada a objetos (2.2.3)
+
+- Clase `Animal` con constructor, propiedades, getter y setter de `name`, método `comer()` y método estático `isAnimal()`.
+- Clases `Dog` y `Cat` que heredan de `Animal` con `extends` y `super`.
+- Uso de `instanceof` para verificar si un objeto es un `Animal`.
+- Polimorfismo: cada animal responde a `sound()` con su propio sonido.
+
+Salida esperada:
+
+```text
+perro
+{ _name: 'perro' }
+gato
+estoy comiendo
+ El objeto es un animal? true
+ El objeto es un animal? false
+ El objeto es un animal? true
+guau guau!
+Miau Miau!
+```
 
 ## Estructura general del proyecto
 
@@ -79,6 +132,7 @@ javascript-fundamentals/
 |-- app.js
 |-- cal.js
 |-- poo.js
+|-- .gitignore
 `-- README.md
 ```
 
